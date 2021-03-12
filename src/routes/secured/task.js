@@ -20,6 +20,7 @@ api.post('/', async (req, res) => {
           userId,
         }
       })
+      res.json({success : true})
     }
       catch (err) {
         res.status(400).json({ error: err.message })

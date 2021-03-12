@@ -4,6 +4,6 @@ import task from './task'
 
 const api = Router()
 
-api.use('./user', user) 
-api.use('./task', task)
+api.use('/user', user)
+api.use('/task', task)
 export default api

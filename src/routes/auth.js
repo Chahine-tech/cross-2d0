@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import passport from 'passport'
 import randomstring from 'randomstring'
-import sendMail from '../services/sendMail'
 import { hashPassword } from '../utils/password'
 
 const api = Router()

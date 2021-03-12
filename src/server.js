@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import checkEnv from './checkEnv.js'
 import routes from './routes'
 import cors from 'cors'
+import './middlewares/passport'
 
 async function server() {
     try {
@@ -12,12 +13,14 @@ async function server() {
         await prisma.$connect()
 
       const app = express();
+      app.use(express.json())
 
     app.get('/', (_req, res) => {
         res.send("Please take a look at our <a href='/api'>API</a>")
       })
 
       app.use('/api', routes)
+      
 
       dotenv.config()
     const port = parseInt(process.env.PORT || 3000, 10)

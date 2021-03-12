@@ -2,7 +2,7 @@ import { Router } from 'express'
 import auth from './auth'
 import secured from './secured'
 import passport from 'passport'
-
+import task from './secured/task'
 const api = Router()
 
 api.get('/', (_req, res) => {
