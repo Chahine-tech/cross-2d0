@@ -5,9 +5,9 @@ import dotenv from 'dotenv'
 
 const api = Router()
 
-api.post('/', async (req, res) => {
+api.post('/add', async (req, res) => {
 
-    const acceptedFields = ['content','userId']
+    const acceptedFields = ['content','userId','isComplete']
   
     const missingValues = acceptedFields.filter(field => !req.body[field])
     const {content, userId} = req.body
@@ -18,6 +18,7 @@ api.post('/', async (req, res) => {
         data: {
           content,
           userId,
+          isComplete,
         }
       })
       res.json({success : true})
@@ -27,7 +28,8 @@ api.post('/', async (req, res) => {
       }
 })
 
-api.delete('/', async (req, res) => {
+//faire le delete
+api.delete('/delete', async (req, res) => {
 
 })
 
