@@ -4,7 +4,7 @@ Cross 2d0
 
 ## Installation
 
-Clone this project and npm install for to use this project.
+Clone this project and ```npm install``` for to use this project.
 
 ## Usage
 
