@@ -12,26 +12,6 @@ import { emailValidator } from '../helpers/emailValidator'
 import { passwordValidator } from '../helpers/passwordValidator'
 
 const LoginScreen = ({ navigation }) => {
-    const signin = async (email, password, callback) => {
-      try {
-        const response = await fetch("http:localhost:3000/api/auth/signin", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        })
-  
-        const { data } = await response.json()
-        callback(data)
-      } catch(error) {
-          console.log(error)
-      } 
-    }
-
   const [email, setEmail] = useState({ value: '', error: '' })
   const [password, setPassword] = useState({ value: '', error: '' })
 
@@ -43,13 +23,9 @@ const LoginScreen = ({ navigation }) => {
       setPassword({ ...password, error: passwordError })
       return
     }
-
-
-    signin(email.value, password.value, (data) => {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'Task' }],
-      })
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Dashboard' }],
     })
   }
 
