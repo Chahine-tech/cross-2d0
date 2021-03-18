@@ -11,7 +11,7 @@ const api = Router()
 
 api.post('/signup', async (req, res) => {
 
-  const acceptedFields = ['firstname', 'lastname', 'email', 'password', 'passwordConfirmation']
+  const acceptedFields = ['firstname', 'lastname', 'email', 'password', 'passwordConfirmation', 'birthdate']
 
   const missingValues = acceptedFields.filter(field => !req.body[field])
   if (!isEmpty(missingValues)) {
@@ -20,7 +20,7 @@ api.post('/signup', async (req, res) => {
     })
   }
 
-  const { firstname, lastname, email, password, passwordConfirmation } = req.body
+  const { firstname, lastname, email, password, passwordConfirmation, birthdate } = req.body
 
   if (password !== passwordConfirmation) {
     return res.status(400).json({
@@ -36,6 +36,7 @@ api.post('/signup', async (req, res) => {
         lastname,
         email,
         encryptedPassword: hashPassword(password),
+        birthdate
       }
     })
 

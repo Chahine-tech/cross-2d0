@@ -14,53 +14,13 @@ api.get('/', async (req, res) => {
         lastname: true,
         email: true,
         createdAt: true,
-        updatedAt: true,
+        updatedAt: true
       }
     })
 
     res.json({ data: { users } })
   } catch (err) {
     res.status(BAD_REQUEST.status).json({ error: err.message })
-  }
-})
-
-api.post('/signup', async (req, res) => {
-
-  const acceptedFields = ['firstname', 'lastname', 'email', 'password', 'passwordConfirmation']
-
-  const missingValues = acceptedFields.filter(field => !req.body[field])
-  if (!isEmpty(missingValues)) {
-    return res.status(400).json({
-      error: `Values ${missingValues.join(', ')} are missing`
-    })
-  }
-
-  const { firstname, lastname, email, password, passwordConfirmation } = req.body
-
-  if (password !== passwordConfirmation) {
-    return res.status(400).json({
-      error: "Password and confirmation doesn't match"
-    })
-  }
-
-  const prisma = new PrismaClient()
-  try {
-    const user = await prisma.user.create({
-      data: {
-        firstname,
-        lastname,
-        email,
-        encryptedPassword: hashPassword(password),
-      }
-    })
-
-    const payload = { email }
-    dotenv.config()
-    const token = jwt.sign(payload, process.env.JWT_ENCRYPTION)
-
-    res.json({ data: { user, token } })
-  } catch (err) {
-    res.status(400).json({ error: err.message })
   }
 })
 

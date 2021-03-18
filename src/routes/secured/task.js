@@ -28,46 +28,31 @@ api.post('/add', async (req, res) => {
       }
 })
 
-/*api.put('/update/:id', async (req, res) => {
+api.put('/update/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10)
 
     const prisma = new PrismaClient()
-    const user = await prisma.user.findFirst({
+    const task = await prisma.task.findFirst({
       where: {
-        id
+        id,
+        isComplete
       }
     })
-
-    if (!user) {
-      return res.status(BAD_REQUEST.status).json({ error: `User ${id} doesn't exist` })
-    }
-
-    const acceptedFields = ['firstname', 'lastname', 'gender']
-    let data = {}
-    for (const key of acceptedFields) {
-      if (req.body[key]) {
-        data[key] = req.body[key]
-      }
-    }
-
-    const updatedUser = await prisma.user.update({
+    const updatedtask = await prisma.task.update({
       where: {
-        id
+        id,
       },
-      data
+      data: {
+      isComplete: task.isComplete ? false : true,
+      }
     })
 
-    res.json({ data: { user: updatedUser } })
+    res.json({ data: {updateTasks} })
   } catch (err) {
     res.status(BAD_REQUEST.status).json({ error: err.message })
   }
 })
-*/
-
-
-
-
 
 api.delete('/delete/:id', async (req, res) => {
 
