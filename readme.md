@@ -8,7 +8,9 @@ Clone this project and npm install for to use this project.
 
 ## Usage
 
-
+```
+npm run dev, npm run web
+```
 
 ## Contributing
 Chahine Benlahcen Tlemcani, Bibi Banee, Elior Sasportas
