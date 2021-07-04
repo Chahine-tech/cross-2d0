@@ -62,7 +62,7 @@ const LoginScreen = ({ navigation }) => {
           <Text style={styles.forgot}>Mot de passe oublié ?</Text>
         </TouchableOpacity>
       </View>
-      <Button mode="contained" onPress={onLoginPressed}>
+      <Button mode="contained" onPress={() => navigation.navigate('Task')}>
         Login
       </Button>
       <View style={styles.row}>
